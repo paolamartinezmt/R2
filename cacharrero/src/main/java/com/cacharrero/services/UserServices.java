@@ -1,13 +1,14 @@
 package com.cacharrero.services;
+
 import com.cacharrero.model.User;
 import com.cacharrero.repository.crud.UserRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 /**
  * @ autor Paola Martinez
- *
  **/
 @Service
 public class UserServices {
@@ -24,24 +25,25 @@ public class UserServices {
 
     /**
      * Metodo para obtener todos los usuarios
+     *
      * @return
      */
-    public List<User> getAll(){
-        return  userRepository.findAll();
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
     /**
      * Metodo para crear un usuario
+     *
      * @param user
      * @return
      */
 
-    public User newUser(User user){
+    public User newUser(User user) {
         List<User> users = userRepository.findAll();
-        if(users.isEmpty()) {
+        if (users.isEmpty()) {
             return userRepository.save(user);
-        }
-        else if ( verifyEmail(user.getEmail()) == false ) {
+        } else if (verifyEmail(user.getEmail()) == false) {
             return userRepository.save(user);
         }
         return user;
@@ -49,16 +51,17 @@ public class UserServices {
 
     /**
      * Metodo para verificar un correo existe en la base de datos
+     *
      * @param email
      * @return
      */
 
-    public boolean  verifyEmail(String email){
+    public boolean verifyEmail(String email) {
         boolean flag = false;
         List<User> users = userRepository.findAll();
-        for (User user : users){
-            if (email.equals(user.getEmail())){
-                flag=true;
+        for (User user : users) {
+            if (email.equals(user.getEmail())) {
+                flag = true;
             }
         }
         return flag;
@@ -66,15 +69,16 @@ public class UserServices {
 
     /**
      * Metodo para verificar si un usuario existe en la base de datos
+     *
      * @param email
      * @param pass
      * @return
      */
-    public User verifyUser ( String email , String pass ){
+    public User verifyUser(String email, String pass) {
         List<User> users = userRepository.findAll();
         User notExit = User.builder().build();
-        for (User user : users){
-            if (email.equals(user.getEmail()) && pass.equals(user.getPassword()) ){
+        for (User user : users) {
+            if (email.equals(user.getEmail()) && pass.equals(user.getPassword())) {
                 return user;
             }
         }
@@ -83,11 +87,12 @@ public class UserServices {
 
     /**
      * Metodo para eliminar un usuario
+     *
      * @param idUser
      */
-    public void deleteUser(Integer idUser){
+    public void deleteUser(Integer idUser) {
         Optional<User> user = userRepository.findById(idUser);
-        if(user.isPresent()){
+        if (user.isPresent()) {
             userRepository.deleteById(idUser);
 
         }
@@ -96,11 +101,12 @@ public class UserServices {
 
     /**
      * Metodo par actualizar el usuario
+     *
      * @param user
      * @return
      */
 
-    public User updateUser (User user) {
+    public User updateUser(User user) {
         if (user.getId() != null) {
             Optional<User> exist = userRepository.findById(user.getId());
             if (exist.isPresent()) {

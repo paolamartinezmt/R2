@@ -1,7 +1,7 @@
 package com.cacharrero.model;
+
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
@@ -9,14 +9,13 @@ import javax.persistence.Id;
 
 /**
  * @ autor Paola Martinez
- *
  **/
 @Data
 @Builder
 @Document(collection = "usuarios")
 public class User {
     /**
-     *Atributo ID
+     * Atributo ID
      */
     @Id
     private Integer id;
@@ -25,11 +24,11 @@ public class User {
      */
     private String identification;
     /**
-     *  Atributo dirección
+     * Atributo dirección
      */
     private String address;
     /**
-     *  Atributo teléfono
+     * Atributo teléfono
      */
     private String cellPhone;
     /**
@@ -45,11 +44,11 @@ public class User {
      */
     private String name;
     /**
-    * Atributo zone
+     * Atributo zone
      */
     private String zone;
     /**
-    * Atributo type
+     * Atributo type
      */
     private String type;
 }

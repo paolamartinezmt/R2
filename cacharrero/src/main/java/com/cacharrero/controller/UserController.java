@@ -57,4 +57,28 @@ public class UserController {
     {
         return userServices.verifyUser(email,pass);
     }
+  /**
+   * Metodo para borrar un usuario
+   * @param idUser
+   */
+  @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id")Integer idUser){
+      userServices.deleteUser(idUser);
+    }
+
+  /**
+   * Metodo para actualizar usuario
+   * @param user
+   * @return
+   */
+   @PutMapping("update")
+   @ResponseStatus(HttpStatus.CREATED)
+   public User updateUser (@RequestBody User user)
+   {
+     return  userServices.updateUser(user);
+   }
+
+
+
 }
